@@ -22,14 +22,7 @@ public class Map {
 		for (int i = 2; i < x.length - 1; i++) {
 			y[i] = (y[i - 1] - yMin) + Math.random() * (yMax + yMin);
 			x[i] =5*i;
-			
-			//y[i]=300 + 50* Math.cos(x[i]);
-			/*
-			 * if (1023 - (x[i - 1] + xMin) >= xMax) x[i] = (x[i - 1] + xMin) +
-			 * Math.random() (xMax +xMin); else x[i] = x[i - 1] +
-			 * (Math.random()) * (1023 - x[i - 1]);
-			 */
-
+		
 		}
 		this.x = x;
 		this.y = y;
