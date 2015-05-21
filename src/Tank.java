@@ -54,13 +54,13 @@ public class Tank {
 
 	public void afficher(Tank tank) {
 		if (m == true) {
-			StdDraw.picture(px, py, "C:/Users/Amine/Desktop/tankwarz/tankvert1.png");
+			StdDraw.picture(px, py, "files/pictures/tankvert1.png");
 			StdDraw.picture(px + 20, py + 30,
-					"C:/Users/Amine/Desktop/tankwarz/canon123.png", 100, 50, rot);
+					"C:files/pictures/canon123.png", 100, 50, rot);
 		} else if (m == false) {
-			StdDraw.picture(px, py, "C:/Users/Amine/Desktop/tankwarz/tankvertdt.png");
+			StdDraw.picture(px, py, "files/pictures/tankvertdt.png");
 			StdDraw.picture(px - 20, py + 30,
-					"C:/Users/Amine/Desktop/tankwarz/canon123d.png", 100, 50, rot);
+					"files/pictures/canon123d.png", 100, 50, rot);
 		}
 
 	}
