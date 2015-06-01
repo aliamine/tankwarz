@@ -3,17 +3,17 @@ import javax.swing.ImageIcon;
 import java.util.*;
 
 public class Tank {
-	private double px = Map.getMapx()[10];
-	private double py = Map.getMapy()[10];;
-	private boolean m;
-	private boolean h;
-	private double rot = 0;
+	public double px ;
+	public double py ;
+	public static boolean direction;
+	public static double rotD = 0;
+	public static double rotG = 180;
 	int ind = Tank.getIndex(Map.getMapx(), px);
 
-	public Tank(double px, double py, boolean m) {
+	public Tank(double px, double py, boolean direction) {
 		this.px = px;
 		this.py = py;
-		this.m = m;
+		this.direction = direction;
 	}
 
 	public static int getIndex(double[] list, double value) {
@@ -26,43 +26,70 @@ public class Tank {
 		return -1;
 	}
 
-	public void rotation(Tank tank, boolean h) {
-		if (h == true && rot<85) {
-			rot++;
-		} else if (h == false && rot>-30) {
-			rot--;
+	public void afficher(Tank tank) {
+		if (direction == true) {
+			StdDraw.picture(px, py + 15, "files/pictures/TankDeOuf.png");
+			StdDraw.picture(px, py+23, "C:files/pictures/canonunique.png", 100, 50,
+					rotD);
+		} else if (direction == false) {
+			StdDraw.picture(px, py + 15, "files/pictures/TankDeOufG.png");
+			StdDraw.picture(px, py+23, "files/pictures/canonunique.png", 100, 50, rotG);
 		}
+
 	}
 
-	public void move(Tank tank, boolean b) {
+	public void move(Tank tank, boolean directSens) {
 
-		if (b == true) {
-			ind = ind + 1;
+		if (directSens == true) {
+			if (ind + 1 < 899)
+				ind = ind + 1;
 			px = Map.getMapx()[ind];
-			py = Map.getMapy()[ind] + 35;
-			m = true;
+			py = Map.getMapy()[ind] + 1;
+			direction = true;
 
-		} else if (b == false) {
-			if (ind - 1 > 0){
+		} else if (directSens == false) {
+			if (ind - 1 > 0) {
 				ind = ind - 1;
 				px = Map.getMapx()[ind];
-				py = Map.getMapy()[ind] + 35;
-				m = false;
+				py = Map.getMapy()[ind] + 1;
+				direction = false;
 			}
 		}
 	}
 
-	public void afficher(Tank tank) {
-		if (m == true) {
-			StdDraw.picture(px, py, "files/pictures/tankvert1.png");
-			StdDraw.picture(px + 20, py + 30,
-					"C:files/pictures/canon123.png", 100, 50, rot);
-		} else if (m == false) {
-			StdDraw.picture(px, py, "files/pictures/tankvertdt.png");
-			StdDraw.picture(px - 20, py + 30,
-					"files/pictures/canon123d.png", 100, 50, rot);
+	public void rotation(Tank tank, boolean h) {
+		if (h == true) {
+			if (direction == true && rotD < 89) {
+				rotD++;
+			} else if (direction == false && rotG >91) {
+				rotD++;
+				rotG = 180-rotD;
+			}
 		}
+		if (h == false) {
+			if (direction == true && rotD > -20) {
+				rotD--;
+			} else if (direction == false && rotG < 210) {
+				rotD--;
+				rotG=180 - rotD;
+			}
 
+		}
 	}
 
+	public double getRotG() {
+		return rotG;
+	}
+	public double getRotD() {
+		return rotD;
+	}
+	public double getPosx() {
+		return px;
+	}
+	public double getPosy() {
+		return py;
+	}
+	public  boolean getDirection(){
+		return direction;
+	}
 }
