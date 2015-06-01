@@ -23,7 +23,6 @@ public class Main {
 
 		while (true) {
 			
-			StdDraw.picture(450,300,"files/pictures/bluesky.jpg");
 			StdDraw.clear(StdDraw.WHITE);
 			poly.polyG(poly);
 			tankVert.afficher(tankVert);
